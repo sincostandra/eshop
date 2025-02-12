@@ -2,7 +2,7 @@ package id.ac.ui.cs.advprog.eshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-// buat commit
+
 @SpringBootApplication
 public class EshopApplication {
 

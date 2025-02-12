@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+// forgor smth
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -20,7 +20,7 @@ public class ProductController {
     public String createProductPage(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "CreateProduct";
+        return "createProduct";
     }
 
     @PostMapping("/create")
