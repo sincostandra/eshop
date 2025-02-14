@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.configurationprocessor.metadata.ItemMetadata;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
@@ -18,8 +17,11 @@ class ProductRepositoryTest {
 
     @InjectMocks
     ProductRepository productRepository;
+
     @BeforeEach
-    void setUp() {}
+    void setUp() {
+    }
+
     @Test
     void testCreateAndFind() {
         Product product = new Product();
@@ -35,11 +37,13 @@ class ProductRepositoryTest {
         assertEquals(product.getProductName(), savedProduct.getProductName());
         assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
     }
+
     @Test
     void testFindAllIfEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
     }
+
     @Test
     void testFindAllMoreThanOneProduct() {
         Product product1 = new Product();
@@ -62,4 +66,6 @@ class ProductRepositoryTest {
         savedProduct = productIterator.next();
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
+
+    }
 }
