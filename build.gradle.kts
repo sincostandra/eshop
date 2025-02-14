@@ -1,9 +1,4 @@
 
-val seleniumJavaVersion = "4.14.1"
-val seleniumJupiterVersion = "5.0.1"
-val webdrivermanagerVersion = "5.6.3"
-val junitJupiterVersion = "5.9.1"
-
 plugins {
     java
     id("org.springframework.boot") version "3.4.2"
@@ -29,12 +24,13 @@ repositories {
     mavenCentral()
 }
 
+val seleniumJavaVersion = "4.14.1"
+val seleniumJupiterVersion = "5.0.1"
+val webdrivermanagerVersion = "5.6.3"
+val junitJupiterVersion = "5.9.1"
+
+
 dependencies {
-    testImplementation("org.seleniumhq.selenium:selenium-java:$seleniumJavaVersion")
-    testImplementation("io.github.bonigarcia:selenium-jupiter:$seleniumJupiterVersion")
-    testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     compileOnly("org.projectlombok:lombok")
@@ -43,26 +39,31 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.seleniumhq.selenium:selenium-java:$seleniumJavaVersion")
+    testImplementation("io.github.bonigarcia:selenium-jupiter:$seleniumJupiterVersion")
+    testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
 
-tasks.register<Test>("unitTest") {
+tasks.register<Test>("unitTest"){
     description = "Runs unit tests."
     group = "verification"
 
     filter {
         excludeTestsMatching("*FunctionalTest")
     }
+
 }
 
-tasks.register<Test>("functionalTest") {
-    description = "Runs functional tests." // Corrected description for functional tests
+tasks.register<Test>("functionalTest"){
+    description = "Runs functional tests."
     group = "verification"
 
     filter {
-        excludeTestsMatching("*FunctionalTest")
+        includeTestsMatching("*FunctionalTest")
     }
 }
 
-tasks.withType<Test>().configureEach {
+tasks.withType<Test>().configureEach{
     useJUnitPlatform()
 }
