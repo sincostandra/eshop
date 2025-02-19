@@ -10,6 +10,6 @@ public class HomePageController {
 
     @GetMapping
     public String homePage(Model model) {
-        return "homePage";
+        return "Homepage";
     }
 }
