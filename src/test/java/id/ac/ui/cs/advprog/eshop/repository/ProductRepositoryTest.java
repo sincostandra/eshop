@@ -68,4 +68,40 @@ class ProductRepositoryTest {
         assertFalse(productIterator.hasNext());
 
     }
+
+    @Test
+    void testDelete() {
+        Product product1 = new Product();
+        product1.setProductId("f5dfd5a2-6c5e-468d-873c-03524846f9d9");
+        product1.setProductName("Sampo aseli");
+        product1.setProductQuantity(100);
+        productRepository.create(product1);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        productRepository.delete(product1);
+
+        productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testEdit() {
+        Product product1 = new Product();
+        product1.setProductId("9b0224b9-b382-43aa-829a-f92c998a9ace");
+        product1.setProductName("Sampo palsoe");
+        product1.setProductQuantity(5);
+
+        productRepository.create(product1);
+
+        product1.setProductName("Sampo asli");
+        product1.setProductQuantity(10);
+
+        productRepository.update(product1);
+
+        Product updatedProduct = productRepository.findById(product1.getProductId());
+        assertEquals(product1.getProductId(), updatedProduct.getProductId());
+        assertEquals("Sampo asli", updatedProduct.getProductName());
+        assertEquals(10, updatedProduct.getProductQuantity());
+    }
 }
