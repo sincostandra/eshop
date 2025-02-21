@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -66,11 +67,11 @@ class ProductRepositoryTest {
         savedProduct = productIterator.next();
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
-
     }
 
     @Test
     void testDelete() {
+        // Delete positive
         Product product1 = new Product();
         product1.setProductId("f5dfd5a2-6c5e-468d-873c-03524846f9d9");
         product1.setProductName("Sampo aseli");
@@ -83,10 +84,17 @@ class ProductRepositoryTest {
 
         productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
+
+        // Test delete negative
+        Product result = productRepository.delete(product1);
+        assertNull(result);
+        Product resultbyId = productRepository.findById(product1.getProductId());
+        assertNull(resultbyId);
     }
 
     @Test
     void testEdit() {
+        // Test edit positive
         Product product1 = new Product();
         product1.setProductId("9b0224b9-b382-43aa-829a-f92c998a9ace");
         product1.setProductName("Sampo palsoe");
@@ -103,5 +111,11 @@ class ProductRepositoryTest {
         assertEquals(product1.getProductId(), updatedProduct.getProductId());
         assertEquals("Sampo asli", updatedProduct.getProductName());
         assertEquals(10, updatedProduct.getProductQuantity());
+
+        // Test edit negative
+        Product product2 = new Product();
+        product2.setProductId("9b0224b9-b382-43aa-829a-f92c998a9bis");
+        Product resultNegative = productRepository.update(product2);
+        assertNull(resultNegative);
     }
 }
