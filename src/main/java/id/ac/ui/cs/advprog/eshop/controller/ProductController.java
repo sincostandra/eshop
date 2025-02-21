@@ -37,7 +37,7 @@ public class ProductController {
     public String editProductPage(@PathVariable String productId, Model model) {
         Product product = service.findById(productId);
         model.addAttribute("product", product);
-        return "editProduct"; // Assuming you have a separate view for editing
+        return "editProduct";
     }
 
     @PostMapping("/edit")
