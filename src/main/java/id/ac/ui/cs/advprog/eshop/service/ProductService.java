@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface ProductService {
 
-    public Product create(Product product);
-    public List<Product> findAll();
-    public Product findById(String id);
-    public Product update(Product product);
-    public Product delete(Product product);
+    Product create(Product product);
+    List<Product> findAll();
+    Product findById(String id);
+    Product update(Product product);
+    Product delete(Product product);
 
 
 }
