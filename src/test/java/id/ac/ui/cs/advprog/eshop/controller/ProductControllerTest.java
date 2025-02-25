@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.CarService;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,12 @@ public class ProductControllerTest {
     private ProductService service;
 
     private Product product;
+
+    @MockBean
+    private CarController carController;
+
+    @MockBean
+    private CarService carService;
 
     @BeforeEach
     void setUp() {
