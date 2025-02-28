@@ -31,11 +31,11 @@ public class ProductControllerTest {
 
     private Product product;
 
-    @MockBean
-    private CarController carController;
+    // @MockBean
+    // private CarController carController;
 
-    @MockBean
-    private CarService carService;
+    // @MockBean
+    // private CarService carService;
 
     @BeforeEach
     void setUp() {
