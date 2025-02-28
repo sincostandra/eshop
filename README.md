@@ -44,4 +44,36 @@ Saya rasa ci/cd workflows yang saya buat sudah sesuai dengan definisi dari CI/CD
 1. CI pertama adalah untuk mengecek apakah jika saya mengubah kode yang ada, fitur-fitur yang lain akan kena dampak sehingga menimbulkan error? (hal ini dilakukan dengan testing secara otomatis ketika ada push atau pull req)
 2. CI yang kedua adalah pengecekan terhadap kualitas dan potensi kerentanan dari kode yang baru dibuat, hal ini tentunya demi menjaga prinsip clean code.
 
-Untuk CD, saya menggunakan koyeb sehingga konfigurasinya sdh diatur ke koyeb, jadi setiap kali saya melakukan push/pull req ke branch main, akan langsung dideteksi oleh server koyeb dan secara otomatis dideploy ke server
+Untuk CD, saya menggunakan koyeb sehingga konfigurasinya sdh diatur ke koyeb, jadi setiap kali saya melakukan push/pull req ke branch main, akan langsung dideteksi oleh server koyeb dan secara otomatis dideploy ke server  
+
+# Module 3
+### Reflection 1  
+**Question:**  
+*Explain what principles you apply to your project!*  
+
+**Reflection:**  
+SRP: Saya memisahkan CarController dari class ProductController, hal ini untuk membuat tiap class mempunyai tanggung jawabnya masing-masing  
+OCP: Mengubah CarServiceImpl menjadi CarService untuk memudahkan jika ingin menambah fitur tanpa mengubah kode di controller  
+LSP: Karena belum ada kelas yang memiliki method dan return type yang sama, sehingga kode saya belum melanggar prinsip ini  
+ISP: ISP juga sdh diimplementasikan dengan baik karena semua method di interface sudah diimplementasikan  
+DIP: Mengubah CarServiceImpl menjadi CarService untuk membuat dependency refers ke low-level/interface module  
+
+**Question:**  
+*Explain the advantages of applying SOLID principles to your project with examples.*  
+
+**Reflection:**  
+Penerapan SOLID principles sangat membantu dalam peningkatan kualitas kode dan maintainability pada proyek saya. Misalnya, dengan SRP, memisahkan class sesuai task-nya membuat kode menjadi lebih mudah untuk dites dan dimaintain (ketika ada error, maka dapat dengan mudah melihat class mana yang ngebuat error tersebut, misal CarController). Penerapan OCP memungkinkan kode menjadi lebih fleksibel dalam penambahan fitur baru tanpa mengganggu kode yang sudah ada. Dengan LSP, subclass dapat berfungsi dengan baik sesuai dengan class parent-nya. ISP berguna untuk memisahkan interface sehingga klien tidak harus menggunakan method yang tidak diperlukan, sedangkan DIP meningkatkan fleksibilitas dengan membuat komponen bergantung pada abstraksi daripada implementasi konkret. Secara keseluruhan, penerapan SOLID principles membuat sistem menjadi lebih robust, mudah diperluas, dan mudah dirawat seiring waktu.  
+
+**Question:**  
+*Explain the disadvantages of not applying SOLID principles to your project with examples.*  
+Dalam project saya, jika SOLID principles tidak diterapkan, kualitas kode akan menurun dan kode bisa menjadi sulit untuk dimaintain. Misalnya, tanpa SRP, jika terdapat bug pada class controller sulit mengidentifikasi class apa yang menyebabkan errornya karena tasknya tercampur dalam satu class.  Tanpa OCP, setiap penambahan fitur baru harus mengubah kode yang sudah ada, yang meningkatkan risiko terjadinya bug. Jika LSP tidak diterapkan, subclass mungkin tidak berfungsi sesuai dengan class parent-nya, sehingga ketika implementasi baru dari CarService digunakan, CarController bisa mengalami error. Tanpa ISP, interface menjadi bloated dan klien terpaksa harus menggunakan method yang sebenarnya tidak diperlukan, yang menambah kompleksitas dan potensi kesalahan. Dan tanpa DIP, komponen-komponen di dalam sistem bergantung pada concrete implementations, sehingga sulit untuk mengganti atau melakukan testing dengan menggunakan mock objects.
+
+
+
+
+
+
+
+
+
+
